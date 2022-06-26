@@ -1,0 +1,17 @@
+GET http://localhost:8080/getter/params?text=Test
+
+###
+
+GET http://localhost:8080/getter/params/async?text=Test
+
+###
+
+GET http://localhost:8080/getter/params/async/with-context?text=Test
+
+###
+
+GET http://localhost:8080/getter/params/executors?text=Test
+
+###
+
+GET http://localhost:8080/getter/params/executors/with-context?text=Test
