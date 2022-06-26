@@ -1,46 +1,38 @@
-# TODO
+# delegating-spring-request-context
 
-1. Replace with values:
+[![Maven Central](https://img.shields.io/maven-central/v/ru.spb.devclub/delegating-spring-request-context.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22ru.spb.devclub%22%20AND%20a:%22delegating-spring-request-context%22)
+[![Javadocs](https://www.javadoc.io/badge/ru.spb.devclub/delegating-spring-request-context.svg)](https://www.javadoc.io/doc/ru.spb.devclub/delegating-spring-request-context)
+[![GitHub](https://img.shields.io/github/license/devclubspb/delegating-spring-request-context?style=flat&&color=informational)](LICENSE)
 
-- `PROJECT_NAME`
-- `PROJECT_VERSION`
-- `PROJECT_DESCRIPTION`
+Delegating
+[RequestContextHolder](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/request/RequestContextHolder.html)
+like
+[SecurityContextHolder](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/context/SecurityContextHolder.html)
+in
+[org.springframework.security.concurrent](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/concurrent/package-summary.html)
+and
+[org.springframework.security.task](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/task/package-summary.html)
+.
 
-2. Add `~/.m2/settings.xml` and replace `OSS_USERNAME`/`OSS_PASSWORD` with values:
+Using
+[RequestContextHolder](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/request/RequestContextHolder.html)
+in other threads:
 
-```xml
+```java
+@Bean("asyncTaskExecutorWithRequestContext")
+public AsyncTaskExecutor asyncTaskExecutorWithRequestContext() {
+    SimpleAsyncTaskExecutor executor = new SimpleAsyncTaskExecutor("withRequestContext-");
+    return new DelegatingRequestContextAsyncTaskExecutor(executor);
+}
 
-<settings
-        xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
-    <localRepository/>
-    <interactiveMode/>
-    <offline/>
-    <pluginGroups/>
-    <servers>
-        <server>
-            <id>ossrh</id>
-            <username>OSS_USERNAME</username>
-            <password>OSS_PASSWORD</password>
-        </server>
-    </servers>
-    <mirrors/>
-    <proxies/>
-    <profiles/>
-    <activeProfiles/>
-</settings>
+@Async("asyncTaskExecutorWithRequestContext")
+public void runAsync() {
+    RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
+    assert attributes != null;
+}
 ```
 
-3. Remove [TODO](#TODO) block.
-
-# PROJECT_NAME
-
-[![Maven Central](https://img.shields.io/maven-central/v/ru.spb.devclub/PROJECT_NAME.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22ru.spb.devclub%22%20AND%20a:%22PROJECT_NAME%22)
-[![Javadocs](https://www.javadoc.io/badge/ru.spb.devclub/PROJECT_NAME.svg)](https://www.javadoc.io/doc/ru.spb.devclub/PROJECT_NAME)
-[![GitHub](https://img.shields.io/github/license/devclubspb/PROJECT_NAME?style=flat&&color=informational)](LICENSE)
-
-PROJECT_DESCRIPTION.
+See full code in [demo](demo).
 
 ## Install
 
@@ -48,7 +40,7 @@ PROJECT_DESCRIPTION.
 
 ```groovy
 
-implementation 'ru.spb.devclub:PROJECT_NAME:PROJECT_VERSION'
+implementation 'ru.spb.devclub:delegating-spring-request-context:1.0-SNAPSHOT'
 ```
 
 ### Maven
@@ -57,8 +49,8 @@ implementation 'ru.spb.devclub:PROJECT_NAME:PROJECT_VERSION'
 
 <dependency>
     <groupId>ru.spb.devclub</groupId>
-    <artifactId>PROJECT_NAME</artifactId>
-    <version>PROJECT_VERSION</version>
+    <artifactId>delegating-spring-request-context</artifactId>
+    <version>1.0-SNAPSHOT</version>
 </dependency>
 ```
 
