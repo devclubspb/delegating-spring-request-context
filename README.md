@@ -40,7 +40,7 @@ See full code in [demo](demo).
 
 ```groovy
 
-implementation 'ru.spb.devclub:delegating-spring-request-context:1.0-SNAPSHOT'
+implementation 'ru.spb.devclub:delegating-spring-request-context:1.0'
 ```
 
 ### Maven
@@ -50,7 +50,7 @@ implementation 'ru.spb.devclub:delegating-spring-request-context:1.0-SNAPSHOT'
 <dependency>
     <groupId>ru.spb.devclub</groupId>
     <artifactId>delegating-spring-request-context</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 </dependency>
 ```
 

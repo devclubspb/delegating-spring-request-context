@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    implementation files('../target/delegating-spring-request-context-1.0-SNAPSHOT.jar')
+    implementation files('../target/delegating-spring-request-context-1.0.jar')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
