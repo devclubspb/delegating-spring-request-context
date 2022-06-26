@@ -5,12 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.spb.devclub</groupId>
-    <artifactId>PROJECT_NAME</artifactId>
-    <version>PROJECT_VERSION</version>
+    <artifactId>delegating-spring-request-context</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-    <name>PROJECT_NAME</name>
-    <description>PROJECT_DESCRIPTION</description>
-    <url>https://github.com/devclubspb/PROJECT_NAME</url>
+    <name>delegating-spring-request-context</name>
+    <description>
+        Delegating RequestContextHolder like SecurityContextHolder
+        in org.springframework.security.concurrent and org.springframework.security.task
+    </description>
+    <url>https://github.com/devclubspb/delegating-spring-request-context</url>
 
     <licenses>
         <license>
@@ -29,10 +32,19 @@
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>5.3.7</spring.version>
         <junit.version>5.8.2</junit.version>
+        <mockito.version>4.6.1</mockito.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -43,6 +55,19 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -140,14 +165,15 @@
     </distributionManagement>
 
     <issueManagement>
-        <url>https://github.com/devclubspb/PROJECT_NAME/issues</url>
+        <url>https://github.com/devclubspb/delegating-spring-request-context/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
     <scm>
-        <connection>scm:git:https://github.com/devclubspb/PROJECT_NAME.git</connection>
-        <developerConnection>scm:git:https://github.com/devclubspb/PROJECT_NAME.git</developerConnection>
-        <url>https://github.com/devclubspb/PROJECT_NAME.git</url>
+        <connection>scm:git:https://github.com/devclubspb/delegating-spring-request-context.git</connection>
+        <developerConnection>scm:git:https://github.com/devclubspb/delegating-spring-request-context.git
+        </developerConnection>
+        <url>https://github.com/devclubspb/delegating-spring-request-context.git</url>
         <tag>HEAD</tag>
     </scm>
 
